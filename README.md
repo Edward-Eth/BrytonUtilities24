@@ -1,3 +1,7 @@
+This is a forked version of @Mateus0312's "BrytonUtilities" repo, which I am making updates to to (hopefully) improve it.
+
+# Original readme:
+
 I've been using the Bryton 420 for almost a year and always had have problems when importing external .gpx files in the app for route creation.
 After investigating the output files, I noticed that the Bryton active app inserts bugs in the .fit files (Bryton proprietary route format) generated based in .gpx files (routes created directly on their app work without problems).
 
