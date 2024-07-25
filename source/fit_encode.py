@@ -21,13 +21,12 @@ def calculate_file_size(numbers_data):
 
     return size_attribute
 
-def write_points(fit_file,decoded_data):
+def write_points(fit_file,converted_data):
 
-    latitude_data = decoded_data[0]
-    longitude_data = decoded_data[1]
-    altitude_data = decoded_data[2]
-    instructions_data = decoded_data[3]
-
+    latitude_data = converted_data["latitude"]
+    longitude_data = converted_data["longitude"]
+    altitude_data = converted_data["altitude"]
+    instruction_data = converted_data["instruction"]
 
     for i in range (0,len(latitude_data)):
         # 1 byte
@@ -53,7 +52,6 @@ def write_points(fit_file,decoded_data):
         fit_file.write(byte)
 
 def write_instructions(fit_file,instruction_data,instruction_distance,name_data,points_of_interest,numbers_data):
-
 
     number_instructions = numbers_data[1]
     number_pois = numbers_data[2]
@@ -163,32 +161,29 @@ def write_alphabet(fit_file):
         fit_file.write(byte)
 
 
-def encode_fit (fit_path,decoded_data,extracted_attributes):
+def encode_fit (fit_path,converted_data,extracted_attributes):
 
     fit_file = open(fit_path, 'wb')
 
-    latitude_data = decoded_data[0]
-    longitude_data = decoded_data[1]
-    altitude_data = decoded_data[2]
-    instruction_data = decoded_data[3]
-    name_data = decoded_data[4]
+    instruction_data = converted_data["instruction"]
+    name_data = converted_data["name"]
 
-    lat_lon_bounding_box = extracted_attributes[0]
+    lat_lon_bounding_box = extracted_attributes["lat_lon_bounding_box"]
     lat_ne_bounding_box = lat_lon_bounding_box[0]
     lat_sw_bounding_box = lat_lon_bounding_box[1]
     lon_ne_bounding_box = lat_lon_bounding_box[2]
     lon_sw_bounding_box = lat_lon_bounding_box[3]
 
-    total_distance = int(extracted_attributes[1])
-    alt_bounding_box = extracted_attributes[2]
+    total_distance = int(extracted_attributes["total_distance"])
+    alt_bounding_box = extracted_attributes["alt_bounding_box"]
     maximum_altitude = alt_bounding_box[0]
     minimum_altitude = alt_bounding_box[1]
-    numbers_data = extracted_attributes[3]
+    numbers_data = extracted_attributes["number_data"]
     number_point = numbers_data[0]
     number_instructions = numbers_data[1]
     number_pois = numbers_data[2]
-    instruction_distance = extracted_attributes[4]
-    points_of_interest = extracted_attributes[5]
+    instruction_distance = extracted_attributes["instruction_distance"]
+    points_of_interest = extracted_attributes["points_of_interest"]
 
     # 4 bytes
     # header
@@ -309,7 +304,7 @@ def encode_fit (fit_path,decoded_data,extracted_attributes):
     byte=b'\x46\x00\x00\xF9\x00\x03\x01\x04\x85\x02\x04\x85\x03\x02\x84'
     fit_file.write(byte)
 
-    write_points(fit_file,decoded_data)
+    write_points(fit_file,converted_data)
 
     byte=b'\x00\x00'
     fit_file.write(byte)

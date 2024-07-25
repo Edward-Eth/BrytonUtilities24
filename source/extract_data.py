@@ -230,7 +230,7 @@ def calculate_distance_between_points(latitude_data,longitude_data):
         next_point = (latitude_data[i+1]/1000000,longitude_data[i+1]/1000000)
         distance_between_points.append(distance.distance(current_point,next_point).m)
 
-    return total_distance
+    return distance_between_points
 
 def calculate_total_distance(latitude_data,longitude_data):
 
@@ -258,13 +258,12 @@ def calculate_lat_lon_bounding_box(latitude_data, longitude_data):
     lat_lon_bounding_box = [lat_ne_bounding_box, lat_sw_bounding_box, lon_ne_bounding_box, lon_sw_bounding_box]
     return lat_lon_bounding_box
 
-def extract_attributes(decoded_data):
-
-    latitude_data = decoded_data[0]
-    longitude_data = decoded_data[1]
-    altitude_data = decoded_data[2]
-    instruction_data = decoded_data[3]
-    name_data = decoded_data[4]
+def extract_attributes(converted_data):
+    latitude_data = converted_data["latitude"]
+    longitude_data = converted_data["longitude"]
+    altitude_data = converted_data["altitude"]
+    instruction_data = converted_data["instruction"]
+    name_data = converted_data["name"]
     points_of_interest = []
 
 
@@ -284,9 +283,12 @@ def extract_attributes(decoded_data):
 
     number_data = calculate_number_data(instruction_data,points_of_interest)
 
-    decoded_data = [latitude_data,longitude_data,altitude_data,instruction_data,name_data]
+    extracted_attributes = {"lat_lon_bounding_box": lat_lon_bounding_box,
+                            "total_distance": total_distance,
+                            "alt_bounding_box": alt_bounding_box,
+                            "number_data": number_data,
+                            "instruction_distance": instruction_distance,
+                            "points_of_interest": points_of_interest}
 
-    extracted_attributes = [lat_lon_bounding_box,total_distance,alt_bounding_box,number_data,instruction_distance,points_of_interest]
-
-    return  [extracted_attributes,decoded_data]
+    return extracted_attributes
 

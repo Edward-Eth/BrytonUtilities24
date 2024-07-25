@@ -2,6 +2,7 @@
 # gpxpy needs to be installed
 # geopy needs to be installed
 import gpxpy
+from datetime import datetime
 # from geopy import distance
 
 from sys import argv
@@ -28,8 +29,6 @@ orst2brt = {
 13: 8,
 14: 1
     }
-
-
 
 def decode_gpx_ors(gpx_path):
     gpx_file = open(gpx_path,'r')
@@ -73,10 +72,84 @@ def decode_gpx_ors(gpx_path):
     for i in range(0,len(name)-1):
         if name[i] == name[i+1]:
             instruction[i+1] = 15
-    decoded_gpx = [latitude, longitude, altitude, instruction,name]
+    decoded_gpx = {"latitude": latitude,
+                   "longitude": longitude,
+                   "altitude": altitude,
+                   "instruction": instruction,
+                   "name": name}
     return decoded_gpx
 
-def decode_gpx_gmaps(gpx_path):
+def decode_gpx_plotaroute(gpx_path):
+    gpx_file = open(gpx_path,'r')
+    gpx_file = gpx_file.read()
+    # breaks single line file in multiple files
+    gpx_file = gpx_file.split('\n')
+
+    latitude = []
+    longitude = []
+    altitude = []
+    instruction = []
+    name = []
+    time = []
+    number_items = 0
+    for line in gpx_file:
+        if line.find('lat=') != -1:
+            lat = line.split('"')[1]
+            latitude.append(lat)
+            lon = line.split('"')[3]
+            longitude.append(lon)
+            instruction.append('none')
+            altitude.append(0)
+            name.append('none')
+            time.append('none')
+            number_items +=1
+        elif line.find('<sym>') != -1 and number_items>0:
+            ins = line.lstrip().removeprefix('<sym>').removesuffix('</sym>')
+            instruction.pop()
+            instruction.append(ins)
+        elif line.find('<desc>') != -1 and number_items>0:
+            nam = line.strip().removeprefix('<desc>').removesuffix('</desc>')
+            name.pop()
+            name.append(nam)
+        elif line.find('<ele>') != -1 and number_items>0:
+            alt = line.lstrip().removeprefix('<ele>').removesuffix('</ele>')
+            altitude.pop()
+            altitude.append(alt)
+        elif line.find('<time>') != -1 and number_items>0:
+            tim = datetime.fromisoformat(line.lstrip().removeprefix('<time>').removesuffix('</trkpt>').removesuffix('</time>')).timestamp()
+            time.pop()
+            time.append(tim)
+
+    # After extraction, we need to slot in the waypoints where needed by sorting the lists according to the time values extracted
+    sortedZip = sorted(zip(time, latitude, longitude, instruction, name, altitude))
+    strippedTime = []
+    strippedLatitude = []
+    strippedLongitude = []
+    strippedInstruction = []
+    strippedName = []
+    strippedAltitude = []
+
+    for i, point in enumerate(sortedZip):
+        if (point[3] != 'none' or point[4] != 'none') or (i == 0 and (point[0] != sortedZip[i+1][0])) or (point[0] != sortedZip[i-1][0] and point[0] != sortedZip[i+1][0]): ## If the point has an instruction, keep it
+            strippedTime.append(point[0])
+            strippedLatitude.append(point[1])
+            strippedLongitude.append(point[2])
+            strippedInstruction.append(point[3])
+            strippedName.append(point[4])
+            strippedAltitude.append(point[5])
+
+    for i in range(0,len(name)-1):
+        if name[i] == name[i+1]:
+            instruction[i+1] = 15
+
+    decoded_gpx = {"latitude": strippedLatitude,
+                   "longitude": strippedLongitude,
+                   "altitude": strippedAltitude,
+                   "instruction":strippedInstruction,
+                   "name": strippedName}
+    return decoded_gpx
+
+def decode_gpx_gmaps(gpx_path): ## this one seems to be wrong altogether
     gpx_file = open(gpx_path, 'r')
     latitude = []
     longitude = []
@@ -85,13 +158,13 @@ def decode_gpx_gmaps(gpx_path):
     name = []
     for line in gpx_file:
         ins = 'null'
-        if line.find('lat=') != -1:
+        if line.find('lat=') != -1: # If the line contains a latitude value
             lat = line.split('"')[1]
-            latitude.append(lat)
+            latitude.append(lat) ## Store latitude
             lon = line.split('"')[3]
-            longitude.append(lon)
+            longitude.append(lon) ## Store longitude
             ins = 'none'
-            instruction.append(ins)
+            instruction.append(ins) ## Store no instruction
             alt = 0
             altitude.append(alt)
             nam = ''
@@ -105,7 +178,11 @@ def decode_gpx_gmaps(gpx_path):
             altitude.pop()
             altitude.append(alt)
 
-    decoded_gpx = [latitude,longitude,altitude,instruction,name]
+    decoded_gpx = {"latitude": latitude,
+                   "longitude": longitude,
+                   "altitude": altitude,
+                   "instruction":instruction,
+                   "name": name}
 
     return decoded_gpx
         #if line.find()
@@ -114,9 +191,11 @@ def decode_gpx(gpx_path):
     gpx_file=open(gpx_path, 'r')
     line = gpx_file.read()
     if '<name>openrouteservice</name>' in line:
-        decoded_gpx = decode_gpx_ors(gpx_path)
+        decoded_gpx = decode_gpx_ors(gpx_path), 'ors'
+    elif '<desc>Route created on plotaroute.com</desc>' in line:
+        decoded_gpx = decode_gpx_plotaroute(gpx_path), 'par'
     else:
-        decoded_gpx = decode_gpx_gmaps(gpx_path)
+        decoded_gpx = decode_gpx_gmaps(gpx_path), 'gmp'
 
 
   #  l=0
