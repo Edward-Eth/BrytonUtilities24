@@ -12,17 +12,18 @@ import analysis
 import extract_data
 import units_conversion
 import matplotlib.pyplot as plt
-from sys import argv
+import sys
+import os
 
 ###################################################
 # configuration
 
-# location of input gpx file
-# gpx_path = argv[1]
-gpx_path_par = r"C:\Users\Edward\Downloads\test2.gpx"
-gpx_path_ors = r"C:\Users\Edward\Downloads\ors-route1.gpx"
-# gpx_path = r"C:\Users\Edward\Downloads\ors-route1.gpx"
+# Find repo root
+repoPath = os.path.dirname(os.path.dirname(os.path.abspath(sys.argv[0])))
 
+
+# location of demo input gpx file
+gpx_path = os.path.join(repoPath,r"demoData\SerraRioDoRastro.gpx")
 
 # defines tipe of files to be analyzed (options: none, fit)
 analysis_mode = 'none'
@@ -37,27 +38,24 @@ analysis.analyze_fit_files(analysis_mode)
 # decoding input
 
 # decoding gpx file
-decoded_data_par, source_par = gpx_utilities.decode_gpx(gpx_path_par)
-decoded_data_ors, source_ors = gpx_utilities.decode_gpx(gpx_path_ors)
+decoded_data, source = gpx_utilities.decode_gpx(gpx_path)
 
 ###################################################
 # working with data
 
-converted_data_par = units_conversion.convert_input_units(decoded_data_par, source_par)
-converted_data_ors = units_conversion.convert_input_units(decoded_data_ors, source_ors)
+converted_data = units_conversion.convert_input_units(decoded_data, source)
+
 # INSERTED_POI = [POI NAME, POI ID, DISTANCE FROM START IN METERS]
 # inserted_poi = ['BIG', b'\x66', 40000]
 
-extracted_attributes_par = extract_data.extract_attributes(converted_data_par)
-extracted_attributes_ors = extract_data.extract_attributes(converted_data_ors)
+extracted_attributes = extract_data.extract_attributes(converted_data)
 
 ###################################################
 # encoding output
 
 plt.figure()
-plt.plot(converted_data_par["longitude"], converted_data_par["latitude"])
-plt.plot(converted_data_ors["longitude"], converted_data_ors["latitude"])
+plt.plot(converted_data["longitude"], converted_data["latitude"])
 plt.show()
 
-fit_path = gpx_path_par.replace('.gpx','.fit')
-fit_encode.encode_fit(fit_path,converted_data_par,extracted_attributes_par)
+fit_path = gpx_path.replace('.gpx','.fit')
+fit_encode.encode_fit(fit_path,converted_data,extracted_attributes)
