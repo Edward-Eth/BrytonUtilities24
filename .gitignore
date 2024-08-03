@@ -1,0 +1,5 @@
+*.gpx
+*.fit
+!/demoData/*.gpx
+BrytonUtilitiesVenv
+/BrytonUtilitiesVenv/*
