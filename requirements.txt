@@ -3,6 +3,5 @@ matplotlib
 gpxpy
 datetime
 geopy
-struct
 re
 codecs
