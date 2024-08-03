@@ -1,6 +1,4 @@
 from geopy import distance
-# import requests
-# import pandas as pd
 
 
 def safediv(num, den):
@@ -31,8 +29,8 @@ def add_poi_to_instructions(instruction_distance, instruction_data, points_of_in
 
 # work in progress
 def add_poi_by_climb(points_of_interest, point_attribute):
-    distance_from_last_point = point_attribute[0]
-    altitude_from_last_point = point_attribute[1]
+    distance_from_last_point = point_attribute["DistFromLastPoint"]
+    altitude_from_last_point = point_attribute["AltFromLastPoint"]
 
     # for i in range(0,len(distance_from_last_point)):
     #   print(distance_from_last_point[i],altitude_from_last_point[i])
@@ -44,10 +42,6 @@ def add_poi_by_climb(points_of_interest, point_attribute):
     mountain_start = 0
     mountain_finish = 0
     mountain = []
-    # grade = []
-    # for i in range (0, len(distance_from_last_point)-1):
-    #    grade.append((altitude_from_last_point[i+1]-altitude_from_last_point[i])/(distance_from_last_point[i+1]-distance_from_last_point[i])*100)
-    # grade.append(0)
 
     distance_from_start = [0.0]
 
@@ -126,21 +120,22 @@ def add_poi_by_distance(points_of_interest, point_attribute, inserted_poi):
 
 
 def calculate_points_attributes(latitude_data, longitude_data, altitude_data):
-    distance_from_last_point = []
-    delta_altitude_from_last_point = []
-
-    distance_from_last_point.append(0)
-    delta_altitude_from_last_point.append(0)
+    distance_from_last_point = [0]
+    distance_to_point = [0]
+    delta_altitude_from_last_point = [0]
 
     for i in range(1, len(latitude_data)):
         current_point = (latitude_data[i] / 1000000, longitude_data[i] / 1000000)
         last_point = (latitude_data[i - 1] / 1000000, longitude_data[i - 1] / 1000000)
         distance_from_last_point.append(distance.distance(current_point, last_point).m)
+        distance_to_point.append(distance_to_point[i-1]+distance_from_last_point[i])
         delta_altitude_from_last_point.append((altitude_data[i] - altitude_data[i - 1]))
 
-    point_attribute = [distance_from_last_point, delta_altitude_from_last_point]
+    point_attributes = {'DistFromLastPoint': distance_from_last_point,
+                        'PointDistance': distance_to_point,
+                        'AltFromLastPoint': delta_altitude_from_last_point}
 
-    return point_attribute
+    return point_attributes
 
 
 def calculate_instruction_distance(instruction_data, latitude_data, longitude_data):
@@ -248,6 +243,7 @@ def extract_attributes(converted_data):
                             "alt_bounding_box": alt_bounding_box,
                             "number_data": number_data,
                             "instruction_distance": instruction_distance,
+                            "points_distance": point_attribute["PointDistance"],
                             "points_of_interest": points_of_interest}
 
     return extracted_attributes

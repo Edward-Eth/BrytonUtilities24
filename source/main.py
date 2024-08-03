@@ -42,7 +42,18 @@ extracted_attributes = extract_data.extract_attributes(converted_data)
 
 # Plotting the extracted route for a sanity check.
 plt.figure()
+plt.title("Top down view of route.")
 plt.plot(converted_data["longitude"], converted_data["latitude"])
+plt.xlabel("Longitude")
+plt.ylabel("Latitude")
+plt.show()
+
+# Plotting height against total distance
+plt.figure()
+plt.title("Height against distance")
+plt.xlabel("Distance along route")
+plt.ylabel("Height")
+plt.plot(extracted_attributes["points_distance"], converted_data["altitude"])
 plt.show()
 
 # Exporting the file, first change input path to output path by appending ".fit" and then run the
