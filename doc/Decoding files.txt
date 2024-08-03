@@ -23,9 +23,9 @@ Aparentely the bryton app does not decode imported .gpx files correctly, it is n
 
 [Alphabet]
 9 bytes reserved 42 00 00 FB 00 01 01 02 84
-Repeating for each instruction
+Repeating for each Instruction
 	1 byte reserved 02
-	2 bytes instruction (00 00, 00 01, 00 02,...)
+	2 bytes Instruction (00 00, 00 01, 00 02,...)
 Ending with 43 00 00
 
 
@@ -34,10 +34,10 @@ Ending with 43 00 00
 21 bytes reserved 44 00 00 FA 00 05 01 02 84 02 01 00 03 04 86 04 04 86 05 20 07
 
 [Starting on 04 00 00 - Instructions (data to TINFO file)]
-Repeating for each instruction
+Repeating for each Instruction
 	1 byte reserved 04
-	2 bytes point identification (a long route will have points without instructions)
-	1 byte direction instruction (01 go ahead, 02 turn right, 21 end of route, ...) , after end of route indicates POI number (65 peak, 68 Checkpoint, 66 Food, 64 General)
+	2 bytes Point identification (a long route will have points without instructions)
+	1 byte direction Instruction (01 go ahead, 02 turn right, 21 end of route, ...) , after end of route indicates POI number (65 peak, 68 Checkpoint, 66 Food, 64 General)
 	4 bytes distance in lane TBD better describe this attribute, for POI is distance from start of route
 	4 bytes reserved FF FF FF FF for directions 00 00 00 00 for POIs
 	32 bytes lane identification (street blablabla)
@@ -47,7 +47,7 @@ Ending with 45 00 00
 10 bytes reserved 45 00 00 FC 00 01 01 02 84 05
 2 bytes number of points
 15 bytes reserved 46 00 00 F9 00 03 01 04 85 02 04 85 03 02 84
-Repeating for each point
+Repeating for each Point
 	1 byte reserved 06
 	4 bytes latitude
 	4 bytes longitude
@@ -87,12 +87,12 @@ File indicating the points that form the described route
 4 bytes latitude *1000000
 		  4 bytes longitude *1000000
 		  			4 bytes altitude
-		  					  4 bytes point identification
+		  					  4 bytes Point identification
 
 .tinfo -> Completely found in .fit
 File indicating all turn and POI information along route
-2 bytes point identification (a long route will have points without instructions)
-     2 bytes direction instruction (01 go ahead, 02 turn right, 21 end of route, ...) , after end of route indicates POI number (65 peak, 68 Checkpoint, 66 Food, 64 General)
+2 bytes Point identification (a long route will have points without instructions)
+     2 bytes direction Instruction (01 go ahead, 02 turn right, 21 end of route, ...) , after end of route indicates POI number (65 peak, 68 Checkpoint, 66 Food, 64 General)
        	  4 bytes distance in lane TBD better describe this attribute
                     4 bytes reserved FF FF FF FF for directions 00 00 00 00 for POIs
 							      32 bytes lane identification (street blablabla)

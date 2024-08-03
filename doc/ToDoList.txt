@@ -7,14 +7,14 @@ Investigations:
 	Not essential
 	-	Are the 2 bytes in header and footer of .fit a form of checksum ?
 		Filling this fields with 00 00 has no effect on the file handling by the gps unit
-	-	How and where the size of the alphabet is determined ?
-		The alphabet has no effect on the file handling by the gps unit.
+	-	How and where the size of the Alphabet is determined ?
+		The Alphabet has no effect on the file handling by the gps unit.
 		Padding this fields with 00 00 appears to have no effect in output file?
 	-	What is the logic behind the division of .zmap files ?
 		Dealt by the GPS unit, no need to investigate
 	-	Why sometimes files have more than 1 part Ex.: the same file may contain part 3 and 5 of a route
 		Dealt by the GPS unit, no need to investigate
-	-	Is the alphabet necessary for the exibition of specific characters?
+	-	Is the Alphabet necessary for the exibition of specific characters?
 		Adding accented characters breaks the file, accented characters have special coding as follows:
 		à C3A0
 		á C3A1
@@ -31,7 +31,7 @@ Investigations:
 		ú C3B4
 		ü C3BA
 		û C3BC
-		Apparentely the alphabet has no effect on the file (no modification in .smy, .tinfo,...). Having the alphabet as 02 00 00 43 appears to be enough for the file to work.
+		Apparentely the Alphabet has no effect on the file (no modification in .smy, .tinfo,...). Having the Alphabet as 02 00 00 43 appears to be enough for the file to work.
 
 
 Tests to perform:

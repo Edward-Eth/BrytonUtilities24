@@ -1,8 +1,7 @@
-
-#code TBDs:
+# code TBDs:
 # fix conversion of int data (currently it is considered as UINT)
 # fix register of ASCII data
-# create class to agregate file data
+# create class to aggregate file data
 
 def byte_to_int(byte):
     if len(byte) == 2:
@@ -26,7 +25,6 @@ def verify_header(expected_header, actual_header):
 
 def decode_fit(fit_path):
     fit_file = open(fit_path, 'rb')
-
 
     bytes_in_current_word = 4
     byte = fit_file.read(bytes_in_current_word)
@@ -52,7 +50,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # Don't know what this data is
-    unindentified_data = byte_to_int(byte)
+    _ = byte_to_int(byte)
 
     bytes_in_current_word = 31
     byte = fit_file.read(bytes_in_current_word)
@@ -117,7 +115,7 @@ def decode_fit(fit_path):
         return fit_path
 
     i = 0
-    # iterate over alphabet
+    # iterate over Alphabet
     alphabet_size = 0
     alphabet = []
     while i == 0:
@@ -125,7 +123,7 @@ def decode_fit(fit_path):
         bytes_in_current_word = 1
         byte = fit_file.read(bytes_in_current_word)
 
-        # verifies header correcteness and exit condition
+        # verifies header correctness and exit condition
         if '43' == byte.hex():
             break
         elif not verify_header('02', byte.hex()):
@@ -167,7 +165,7 @@ def decode_fit(fit_path):
         bytes_in_current_word = 1
         byte = fit_file.read(bytes_in_current_word)
 
-        # verifies header correcteness and exit condition
+        # verifies header correctness and exit condition
         if '45' == byte.hex():
             break
         elif not verify_header('04', byte.hex()):
@@ -256,6 +254,6 @@ def decode_fit(fit_path):
     bytes_in_current_word = 2
     byte = fit_file.read(bytes_in_current_word)
 
-    unindentified_data2 = byte_to_int(byte)
+    _ = byte_to_int(byte)
 
     print()
