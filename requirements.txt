@@ -3,4 +3,3 @@ matplotlib
 gpxpy
 datetime
 geopy
-codecs
