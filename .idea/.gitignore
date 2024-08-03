@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 *.gpx
-!demoData/*.gpx
 *.fit
+!/demoData/*.gpx
 BrytonUtilitiesVenv
 /BrytonUtilitiesVenv/*
