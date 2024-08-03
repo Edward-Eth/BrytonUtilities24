@@ -1,5 +1,5 @@
 unidecode
-matplotlib.pyplot
+matplotlib
 gpxpy
 datetime
 geopy
