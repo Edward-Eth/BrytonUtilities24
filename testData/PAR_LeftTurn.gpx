@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<wpt lat="51.471283" lon="-0.108267">
+<time>2024-08-03T00:00:00Z</time>
+<name>Start on E</name>
+<cmt>Start on Evandale Road</cmt>
+<desc>Start on Evandale Road</desc>
+<sym>Flag, Blue</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="51.470794" lon="-0.108801">
+<time>2024-08-03T00:01:05Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Loughborough Road</cmt>
+<desc>Turn left onto Loughborough Road</desc>
+<sym>Left</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="51.470719" lon="-0.108">
+<time>2024-08-03T00:01:58Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+<type>Waypoint</type>
+</wpt>
+<trk>
+<name>PAR_LeftTurn</name>
+<trkseg>
+<trkpt lat="51.471283" lon="-0.108267">
+<ele>8</ele>
+<time>2024-08-03T00:00:00Z</time></trkpt>
+<trkpt lat="51.471283" lon="-0.108267">
+<ele>8</ele>
+<time>2024-08-03T00:00:00Z</time></trkpt>
+<trkpt lat="51.47091" lon="-0.10876">
+<ele>8</ele>
+<time>2024-08-03T00:00:52Z</time></trkpt>
+<trkpt lat="51.470861" lon="-0.108793">
+<ele>8</ele>
+<time>2024-08-03T00:00:58Z</time></trkpt>
+<trkpt lat="51.470794" lon="-0.108801">
+<ele>8</ele>
+<time>2024-08-03T00:01:05Z</time></trkpt>
+<trkpt lat="51.470719" lon="-0.108">
+<ele>8</ele>
+<time>2024-08-03T00:01:58Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>

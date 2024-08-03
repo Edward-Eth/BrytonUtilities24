@@ -3,3 +3,4 @@
 !/demoData/*.gpx
 BrytonUtilitiesVenv
 /BrytonUtilitiesVenv/*
+!/testData/*.gpx
