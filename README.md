@@ -1,5 +1,15 @@
 This is a forked version of @Mateus0312's "BrytonUtilities" repo, which I am making updates to to (hopefully) improve it.
 
+# Windows nstallation steps using git (if you want to contribute)
+1. This repo is written for python 3.12, which can be downloaded here: https://www.python.org/downloads/ or by using the windows app store (easier for beginners)
+2. You will also need to install git, for instructions go here: https://git-scm.com/download/win
+3. After installing python 3.12, checkout the repo using this command: `git clone https://github.com/Edward-Eth/BrytonUtilities24.git` in the location you want to keep the files
+4. Create a new virtual environment in the repo folder: `python -m venv BrytonUtilities24/BrytonUtilitiesVenv`
+5. Change directory to within the repo: `cd BrytonUtilities24`
+6. Activate the virtual environment: `BrytonUtilitiesVenv\Scripts\activate`
+7. Update pip: `python -m pip install --upgrade pip`
+8. Use pip to install the packages required for the repo: `pip install -r requirements.txt`
+
 # Original readme:
 
 I've been using the Bryton 420 for almost a year and always had have problems when importing external .gpx files in the app for route creation.
