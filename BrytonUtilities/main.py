@@ -58,5 +58,5 @@ plt.show()
 
 # Exporting the file, first change input path to output path by appending ".fit" and then run the
 # fit encoder.
-fit_path = gpx_path.replace('.gpx', '.fit')
+fit_path = gpx_path.replace(".gpx", ".fit")
 fit_encode.encode_fit(fit_path, converted_data, extracted_attributes)
