@@ -3,6 +3,7 @@
 # fix register of ASCII data
 # create class to aggregate file data
 
+
 def byte_to_int(byte):
     if len(byte) == 2:
         return 256 * byte[1] + byte[0]
@@ -15,22 +16,22 @@ def byte_to_int(byte):
 def verify_header(expected_header, actual_header):
     # File header
     if expected_header != actual_header:
-        print('header is erroneous')
-        print('exp: ' + expected_header)
-        print('act: ' + actual_header)
+        print("header is erroneous")
+        print("exp: " + expected_header)
+        print("act: " + actual_header)
         return False
     else:
         return True
 
 
 def decode_fit(fit_path):
-    fit_file = open(fit_path, 'rb')
+    fit_file = open(fit_path, "rb")
 
     bytes_in_current_word = 4
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('0e106c00', byte.hex()):
+    if not verify_header("0e106c00", byte.hex()):
         return fit_path
 
     bytes_in_current_word = 4
@@ -43,7 +44,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('2e464954', byte.hex()):
+    if not verify_header("2e464954", byte.hex()):
         return fit_path
 
     bytes_in_current_word = 2
@@ -56,7 +57,9 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('410000fe000801028402048503048504048505048506048607028408028401', byte.hex()):
+    if not verify_header(
+        "410000fe000801028402048503048504048505048506048607028408028401", byte.hex()
+    ):
         return fit_path
 
     bytes_in_current_word = 2
@@ -111,7 +114,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('420000fb0001010284', byte.hex()):
+    if not verify_header("420000fb0001010284", byte.hex()):
         return fit_path
 
     i = 0
@@ -119,14 +122,13 @@ def decode_fit(fit_path):
     alphabet_size = 0
     alphabet = []
     while i == 0:
-
         bytes_in_current_word = 1
         byte = fit_file.read(bytes_in_current_word)
 
         # verifies header correctness and exit condition
-        if '43' == byte.hex():
+        if "43" == byte.hex():
             break
-        elif not verify_header('02', byte.hex()):
+        elif not verify_header("02", byte.hex()):
             return fit_path
 
         bytes_in_current_word = 2
@@ -139,7 +141,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('0000fd000101028403', byte.hex()):
+    if not verify_header("0000fd000101028403", byte.hex()):
         return fit_path
 
     bytes_in_current_word = 2
@@ -152,7 +154,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('440000fa0005010284020100030486040486052007', byte.hex()):
+    if not verify_header("440000fa0005010284020100030486040486052007", byte.hex()):
         return fit_path
 
     # iterate over instructions (turns and POIs)
@@ -166,9 +168,9 @@ def decode_fit(fit_path):
         byte = fit_file.read(bytes_in_current_word)
 
         # verifies header correctness and exit condition
-        if '45' == byte.hex():
+        if "45" == byte.hex():
             break
-        elif not verify_header('04', byte.hex()):
+        elif not verify_header("04", byte.hex()):
             return fit_path
 
         bytes_in_current_word = 2
@@ -189,10 +191,10 @@ def decode_fit(fit_path):
         bytes_in_current_word = 4
         byte = fit_file.read(bytes_in_current_word)
 
-        if 'ffffffff' != byte.hex():
-            if '00000000' != byte.hex():
-                verify_header('ffffffff', byte.hex())
-                verify_header('00000000', byte.hex())
+        if "ffffffff" != byte.hex():
+            if "00000000" != byte.hex():
+                verify_header("ffffffff", byte.hex())
+                verify_header("00000000", byte.hex())
                 return fit_path
 
         bytes_in_current_word = 32
@@ -205,7 +207,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('0000fc000101028405', byte.hex()):
+    if not verify_header("0000fc000101028405", byte.hex()):
         return fit_path
 
     bytes_in_current_word = 2
@@ -218,7 +220,7 @@ def decode_fit(fit_path):
     byte = fit_file.read(bytes_in_current_word)
 
     # File header
-    if not verify_header('460000f90003010485020485030284', byte.hex()):
+    if not verify_header("460000f90003010485020485030284", byte.hex()):
         return fit_path
 
     # iterate over points
@@ -227,11 +229,10 @@ def decode_fit(fit_path):
     point_longitude = []
     point_altitude = []
     while i < number_of_points2:
-
         bytes_in_current_word = 1
         byte = fit_file.read(bytes_in_current_word)
 
-        if not verify_header('06', byte.hex()):
+        if not verify_header("06", byte.hex()):
             return fit_path
 
         bytes_in_current_word = 4
