@@ -16,9 +16,9 @@ I provide no guarantee of the accuracy/reliability of this code, I always recomm
 # Using without installing locally
 It is (TODO) possible to use this repo to convert files without installing it locally on your computer, all you need is a (free) github account.
 1. Create a new branch:
-  1. Click on the branch icon in the top left of the files list
-  2. Click "view all branches"
-  3. In the new windows, click on the top right button "create new branch"
+   a. Click on the branch icon in the top left of the files list
+   b. Click "view all branches"
+   c. In the new windows, click on the top right button "create new branch"
 2. In your new branch, add your gpx files to convert in the "toConvert" folder inside the "onlineConversion" folder
 3. Commit your changes
 4. Go to the actions tab and wait for the  "conversion" action to complete (complete once a green arrow appears)
