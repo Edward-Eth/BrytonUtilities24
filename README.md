@@ -27,7 +27,7 @@ It is (TODO) possible to use this repo to convert files without installing it lo
 7. To get the files onto your Bryton rider, follow the steps further down in this readme
 
 # Local Windows installation steps using git (if you want to contribute)
-1. This repo is written for python 3.12, which can be downloaded here: https://www.python.org/downloads/ or by using the Windows app store (easier for beginners)
+1. This repo is written for python 3.12, which can be downloaded here: https://www.python.org/downloads/
 2. You will also need to install git, for instructions go here: https://git-scm.com/download/win
 3. After installing python 3.12, checkout the repo using this command: `git clone https://github.com/Edward-Eth/BrytonUtilities24.git` in the location you want to keep the files
 4. Create a new virtual environment in the repo folder: `python -m venv BrytonUtilities24/BrytonUtilitiesVenv`
@@ -36,6 +36,7 @@ It is (TODO) possible to use this repo to convert files without installing it lo
 7. Update pip: `python -m pip install --upgrade pip`
 8. Use pip to install the packages required for the repo: `pip install -r requirements.txt`
 9. The repo is now ready to use, you may want to install an editor intended for python, such as pycharm, but this is user preference
+10. You may need to modify your systems TCL path to make matplotlib work correctly.
 
 # Local usage:
 In order to use this code base to convert a .gpx file into a .fit file you need to:
