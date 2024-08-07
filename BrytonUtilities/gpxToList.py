@@ -46,7 +46,7 @@ class GpxToList:
         start_loc = self.gpx_lines.index("<trkseg>")
         end_loc = self.gpx_lines.index("</trkseg>")
 
-        self.gpx_lines = self.gpx_lines[start_loc+1:end_loc-1]
+        self.gpx_lines = self.gpx_lines[start_loc + 1 : end_loc - 1]
 
         return
 
@@ -55,7 +55,7 @@ class GpxToList:
         for index, line in enumerate(self.gpx_lines):
             if "<trkpt" in line:
                 newline = self.strip_trkpt(line)
-                newline.append(self.strip_ele(self.gpx_lines[index+1]))
+                newline.append(self.strip_ele(self.gpx_lines[index + 1]))
                 newlist.append(newline)
         self.gpx_lines = newlist
         return
@@ -76,7 +76,11 @@ class GpxToList:
                 dist.append(0.0)
                 ele.append(point[2])
             else:
-                dist.append(distance.distance(self.gpx_lines[index-1][:2], point[:2]).km*1000+dist[-1])
+                dist.append(
+                    distance.distance(self.gpx_lines[index - 1][:2], point[:2]).km
+                    * 1000
+                    + dist[-1]
+                )
                 ele.append(point[2])
         self.dist = dist
 
