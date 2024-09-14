@@ -97,23 +97,26 @@ if __name__ == "__main__":
     Bristol = GpxToList(r"C:\Users\Edward\Desktop\Bristol.gpx")
     BoxHill = GpxToList(r"C:\Users\Edward\Desktop\BoxHill.gpx")
     Hardknott = GpxToList(r"C:\Users\Edward\Desktop\Hardknott.gpx")
-    Biggin = GpxToList(r"C:\Users\Edward\Desktop\Biggin.gpx")
     Ditchling = GpxToList(r"C:\Users\Edward\Desktop\Ditchling2.gpx")
 
     pl.figure()
     pl.title("Climb comparison")
-    pl.plot(WFtoYalding.dist, WFtoYalding.ele, label="West Farleigh to Yalding")
+    # pl.plot(WFtoYalding.dist, WFtoYalding.ele, label="West Farleigh to Yalding")
     # pl.plot(YaldingtoWF.dist, YaldingtoWF.ele, label="Yalding to West Farleigh")
-    pl.plot(HintonHill.dist, HintonHill.ele, label="Hinton Hill")
+    # pl.plot(HintonHill.dist, HintonHill.ele, label="Hinton Hill")
     pl.plot(VigoHill.dist, VigoHill.ele, label="Vigo Hill")
     # pl.plot(Bristol.dist, Bristol.ele, label="City Centre Bristol to downs")
     # pl.plot(BoxHill.dist, BoxHill.ele, label="Box Hill")
     # pl.plot(Hardknott.dist, Hardknott.ele, label="Hardknott")
-    pl.plot(Biggin.dist, Biggin.ele, label="Biggin Hill")
     pl.plot(Ditchling.dist, Ditchling.ele, label="Ditchling Hill")
     pl.xlabel("Distance, m")
     pl.ylabel("Elevation gained, m")
     pl.legend()
     pl.show()
+
+    Vigo50mGain = []
+    for dist, index in enumerate(VigoHill.dist):
+        if dist >= 50:
+            pass # to do
 
     a = 1

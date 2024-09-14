@@ -138,7 +138,10 @@ def decode_gpx_plotaroute(gpx_path):
             stripped_longitude.append(point[2])
             stripped_instruction.append(point[3])
             stripped_name.append(point[4])
-            stripped_altitude.append(point[5])
+            if i!=0:
+                stripped_altitude.append(sorted_zip[i-1][5])
+            else:
+                stripped_altitude.append(sorted_zip[i + 1][5])
 
     for i in range(0, len(name) - 1):
         if name[i] == name[i + 1]:
