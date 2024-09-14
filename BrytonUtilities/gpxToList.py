@@ -97,6 +97,7 @@ if __name__ == "__main__":
     Bristol = GpxToList(r"C:\Users\Edward\Desktop\Bristol.gpx")
     BoxHill = GpxToList(r"C:\Users\Edward\Desktop\BoxHill.gpx")
     Hardknott = GpxToList(r"C:\Users\Edward\Desktop\Hardknott.gpx")
+    Biggin = GpxToList(r"C:\Users\Edward\Desktop\Biggin.gpx")
     Ditchling = GpxToList(r"C:\Users\Edward\Desktop\Ditchling2.gpx")
 
     pl.figure()
@@ -108,6 +109,7 @@ if __name__ == "__main__":
     # pl.plot(Bristol.dist, Bristol.ele, label="City Centre Bristol to downs")
     # pl.plot(BoxHill.dist, BoxHill.ele, label="Box Hill")
     # pl.plot(Hardknott.dist, Hardknott.ele, label="Hardknott")
+    pl.plot(Biggin.dist, Biggin.ele, label="Biggin Hill")
     pl.plot(Ditchling.dist, Ditchling.ele, label="Ditchling Hill")
     pl.xlabel("Distance, m")
     pl.ylabel("Elevation gained, m")
