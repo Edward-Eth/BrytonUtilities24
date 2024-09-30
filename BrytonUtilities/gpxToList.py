@@ -119,6 +119,6 @@ if __name__ == "__main__":
     Vigo50mGain = []
     for dist, index in enumerate(VigoHill.dist):
         if dist >= 50:
-            pass # to do
+            pass  # to do
 
     a = 1
