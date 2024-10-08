@@ -142,6 +142,9 @@ def convert_input_units(decoded_data, source):
     else:
         raise ValueError("Unsupported GPX source")
 
+    skipped_instructions = [[i, name, orig_instruction] for i, (name, orig_instruction, instruction) in enumerate(zip(name_data, instruction_data, instruction_data_converted)) if
+                            instruction == b"\xff"]
+
     latitude_data_converted = []
     longitude_data_converted = []
     altitude_data_converted = []

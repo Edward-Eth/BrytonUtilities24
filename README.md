@@ -38,11 +38,23 @@ It is (TODO) possible to use this repo to convert files without installing it lo
 9. The repo is now ready to use, you may want to install an editor intended for python, such as pycharm, but this is user preference
 10. You may need to modify your systems TCL path to make matplotlib work correctly.
 
+# Local MacOS installation steps using git (if you want to contribute)
+1. This repo is written for python 3.13, which can be downloaded here: https://www.python.org/downloads/
+2. After installing python, checkout the repo using this command: `git clone https://github.com/Edward-Eth/BrytonUtilities24.git` in the location you want to keep the files
+4. Create a new virtual environment in the repo folder: `python -m venv BrytonUtilities24/BrytonUtilitiesVenv`
+5. Change directory to within the repo: `cd BrytonUtilities24`
+6. Activate the virtual environment: `source BrytonUtilitiesVenv/Scripts/activate`
+7. Update pip: `python -m pip install --upgrade pip`
+8. Use pip to install the packages required for the repo: `pip install -r requirements.txt`
+9. The repo is now ready to use, you may want to install an editor intended for python, such as pycharm, but this is user preference
+
 # Local usage:
 In order to use this code base to convert a .gpx file into a .fit file you need to:
 1. Install using above steps
 2. Download your .gpx file, ensuring you select any "include instructions/waypoints" option present
-3. Use this command: `python pathToRepo\BrytonUtilities24\source\main.py pathToGpxFile\gpxFile.gpx`
+3. Use this command:
+   1. On windows: `python pathToRepo\BrytonUtilities24\source\main.py pathToGpxFile\gpxFile.gpx`
+   2. On MacOS: `python pathToRepo/BrytonUtilities24/source/main.py pathToGpxFile/gpxFile.gpx`
 4. This will run the conversion and plot a map of the input route as a sanity check
 
 # Getting files onto your Bryton

@@ -28,7 +28,7 @@ else:
     # Find repo root to locate demo files regardless of where script was called from.
     repoPath = os.path.dirname(os.path.dirname(os.path.abspath(sys.argv[0])))
     # Join the path to the repo to the path to the demo file within the repo
-    gpx_path = os.path.join(repoPath, r"demoData\SerraRioDoRastro.gpx")
+    gpx_path = os.path.join(repoPath, "demoData", "SerraRioDoRastro.gpx")
 
 # Calling the gpx file reader to extract necessary data from the .gpx file.
 decoded_data, source = gpx_utilities.decode_gpx(gpx_path)
