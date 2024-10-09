@@ -42,7 +42,7 @@ def decode_gpx_ors(gpx_path):
             instruction.append(ins)
             alt = 0
             altitude.append(alt)
-            nam = "none"
+            nam = ""
             name.append(nam)
             number_items += 1
         elif line.find("<type>") != -1 and number_items > 0:
@@ -60,7 +60,7 @@ def decode_gpx_ors(gpx_path):
 
     for i in range(0, len(name) - 1):
         if name[i] == name[i + 1]:
-            instruction[i + 1] = 15
+            instruction[i + 1] = ""
     decoded_gpx = {
         "latitude": latitude,
         "longitude": longitude,
@@ -90,10 +90,10 @@ def decode_gpx_plotaroute(gpx_path):
             latitude.append(lat)
             lon = line.split('"')[3]
             longitude.append(lon)
-            instruction.append("none")
+            instruction.append("")
             altitude.append(0)
-            name.append("none")
-            time.append("none")
+            name.append("")
+            time.append("")
             number_items += 1
         elif line.find("<sym>") != -1 and number_items > 0:
             ins = line.lstrip().removeprefix("<sym>").removesuffix("</sym>")
@@ -129,7 +129,7 @@ def decode_gpx_plotaroute(gpx_path):
 
     for i, point in enumerate(sorted_zip):
         if (
-            (point[3] != "none" or point[4] != "none")
+            (point[3] == "" or point[4] == "")
             or (i == 0 and (point[0] != sorted_zip[i + 1][0]))
             or (point[0] != sorted_zip[i - 1][0] and point[0] != sorted_zip[i + 1][0])
         ):  # If the Point has an Instruction, keep it
@@ -173,7 +173,7 @@ def decode_gpx_gmaps(gpx_path):
             latitude.append(lat)  # Store latitude
             lon = line.split('"')[3]
             longitude.append(lon)  # Store longitude
-            ins = "none"
+            ins = ""
             instruction.append(ins)  # Store no Instruction
             alt = 0
             altitude.append(alt)

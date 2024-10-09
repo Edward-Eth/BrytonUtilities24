@@ -47,9 +47,9 @@ def instruction_conversion_par(instruction_data):
             ins = b"\x03"  # left
         elif instruction == "Right":
             ins = b"\x02"  # right
-        elif instruction == 2:
+        elif instruction == "Left_sharp":
             ins = b"\x07"  # close left
-        elif instruction == 3:
+        elif instruction == "Right_sharp":
             ins = b"\x06"  # close right
         elif instruction == "Left_slight":
             ins = b"\x05"  # slight left
@@ -143,7 +143,7 @@ def convert_input_units(decoded_data, source):
         raise ValueError("Unsupported GPX source")
 
     skipped_instructions = [[i, name, orig_instruction] for i, (name, orig_instruction, instruction) in enumerate(zip(name_data, instruction_data, instruction_data_converted)) if
-                            instruction == b"\xff"]
+                            instruction == b"\xff" and orig_instruction != ""]
 
     latitude_data_converted = []
     longitude_data_converted = []
