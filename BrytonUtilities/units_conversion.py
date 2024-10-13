@@ -142,13 +142,18 @@ def convert_input_units(decoded_data, source):
     else:
         raise ValueError("Unsupported GPX source")
 
-    skipped_instructions = [[i, name, orig_instruction] for i, (name, orig_instruction, instruction) in enumerate(zip(name_data, instruction_data, instruction_data_converted)) if
-                            instruction == b"\xff" and orig_instruction != ""]
+    skipped_instructions = [
+        [i, name, orig_instruction]
+        for i, (name, orig_instruction, instruction) in enumerate(
+            zip(name_data, instruction_data, instruction_data_converted)
+        )
+        if instruction == b"\xff" and orig_instruction != ""
+    ]
 
     if len(skipped_instructions) > 0:
         import csv
 
-        with open('SkippedInstructions.csv', 'w') as myfile:
+        with open("SkippedInstructions.csv", "w") as myfile:
             wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
             wr.writerow(skipped_instructions)
 
