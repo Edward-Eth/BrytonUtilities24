@@ -59,7 +59,7 @@ In order to use this code base to convert a .gpx file into a .fit file you need 
 
 # Getting files onto your Bryton
 1. Plug your Bryton into your computer/laptop/(possibly phone? to test)
-2. Move the exported .fit files into the "XXX" folder (To check name) on the Bryton
+2. Move the exported .fit files into the "PlanTrip" folder on the Bryton
 3. Eject the bryton and unplug it
 4. On the Bryton, go to "tracks" and select the new route
 5. Once processed the Bryton should display the route and give instructions as you ride
