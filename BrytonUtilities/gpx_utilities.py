@@ -91,7 +91,9 @@ def decode_gpx_plotaroute(gpx_path):
             lon = line.split('"')[3]
             longitude.append(lon)
             instruction.append("none")
-            altitude.append(-99) #to implement checking against this instead of 0 as negative will never actually be present.
+            altitude.append(
+                -99
+            )  # to implement checking against this instead of 0 as negative will never actually be present.
             name.append("none")
             time.append("none")
             number_items += 1
@@ -128,12 +130,33 @@ def decode_gpx_plotaroute(gpx_path):
     stripped_altitude = []
 
     for i, point in enumerate(sorted_zip):
-        if (
-            (point[3] != "none" or point[4] != "none")
-            or
-                (not(i == 0 and ((point[1],point[2]) == (sorted_zip[i + 1][1],sorted_zip[i + 1][2])))
-                and not(i == len(sorted_zip)-1 and ((point[1],point[2]) == (sorted_zip[i - 1][1],sorted_zip[i - 1][2])))
-                and not(i != 0 and i != len(sorted_zip)-1 and(((point[1],point[2]) == (sorted_zip[i + 1][1],sorted_zip[i + 1][2])) or ((point[1],point[2]) == (sorted_zip[i - 1][1],sorted_zip[i - 1][2])))))
+        if (point[3] != "none" or point[4] != "none") or (
+            not (
+                i == 0
+                and (
+                    (point[1], point[2]) == (sorted_zip[i + 1][1], sorted_zip[i + 1][2])
+                )
+            )
+            and not (
+                i == len(sorted_zip) - 1
+                and (
+                    (point[1], point[2]) == (sorted_zip[i - 1][1], sorted_zip[i - 1][2])
+                )
+            )
+            and not (
+                i != 0
+                and i != len(sorted_zip) - 1
+                and (
+                    (
+                        (point[1], point[2])
+                        == (sorted_zip[i + 1][1], sorted_zip[i + 1][2])
+                    )
+                    or (
+                        (point[1], point[2])
+                        == (sorted_zip[i - 1][1], sorted_zip[i - 1][2])
+                    )
+                )
+            )
         ):  # If the Point has an Instruction, keep it
             stripped_time.append(point[0])
             stripped_latitude.append(point[1])
@@ -142,12 +165,14 @@ def decode_gpx_plotaroute(gpx_path):
             stripped_name.append(point[4])
             # If this point has no altitude data
             if point[5] == -99:
-                if i == 0: # If we're at point 0 then we can't go back so only go forward
+                if (
+                    i == 0
+                ):  # If we're at point 0 then we can't go back so only go forward
                     altitudeNotFound = True
                     j = 1
                     while altitudeNotFound:
-                        if sorted_zip[i+j][5] != -99:
-                            stripped_altitude.append(sorted_zip[i+j][5])
+                        if sorted_zip[i + j][5] != -99:
+                            stripped_altitude.append(sorted_zip[i + j][5])
                             altitudeNotFound = False
                         else:
                             j += j
