@@ -1,10 +1,5 @@
 import struct
 
-
-def write_instruction(instruction):
-    pass
-
-
 def calculate_file_size(numbers_data):
     number_point = numbers_data[0]
     number_instructions = numbers_data[1]

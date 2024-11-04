@@ -42,7 +42,7 @@ def decode_gpx_ors(gpx_path):
             instruction.append(ins)
             alt = 0
             altitude.append(alt)
-            nam = ""
+            nam = "none"
             name.append(nam)
             number_items += 1
         elif line.find("<type>") != -1 and number_items > 0:
@@ -60,7 +60,7 @@ def decode_gpx_ors(gpx_path):
 
     for i in range(0, len(name) - 1):
         if name[i] == name[i + 1]:
-            instruction[i + 1] = ""
+            instruction[i + 1] = 15
     decoded_gpx = {
         "latitude": latitude,
         "longitude": longitude,
@@ -90,10 +90,10 @@ def decode_gpx_plotaroute(gpx_path):
             latitude.append(lat)
             lon = line.split('"')[3]
             longitude.append(lon)
-            instruction.append("")
-            altitude.append(0)
-            name.append("")
-            time.append("")
+            instruction.append("none")
+            altitude.append(-99) #to implement checking against this instead of 0 as negative will never actually be present.
+            name.append("none")
+            time.append("none")
             number_items += 1
         elif line.find("<sym>") != -1 and number_items > 0:
             ins = line.lstrip().removeprefix("<sym>").removesuffix("</sym>")
@@ -129,21 +129,53 @@ def decode_gpx_plotaroute(gpx_path):
 
     for i, point in enumerate(sorted_zip):
         if (
-            (point[3] == "" or point[4] == "")
-            or (i == 0 and (point[0] != sorted_zip[i + 1][0]))
-            or (point[0] != sorted_zip[i - 1][0] and point[0] != sorted_zip[i + 1][0])
+            (point[3] != "none" or point[4] != "none")
+            or
+                (not(i == 0 and ((point[1],point[2]) == (sorted_zip[i + 1][1],sorted_zip[i + 1][2])))
+                and not(i == len(sorted_zip)-1 and ((point[1],point[2]) == (sorted_zip[i - 1][1],sorted_zip[i - 1][2])))
+                and not(i != 0 and i != len(sorted_zip)-1 and(((point[1],point[2]) == (sorted_zip[i + 1][1],sorted_zip[i + 1][2])) or ((point[1],point[2]) == (sorted_zip[i - 1][1],sorted_zip[i - 1][2])))))
         ):  # If the Point has an Instruction, keep it
             stripped_time.append(point[0])
             stripped_latitude.append(point[1])
             stripped_longitude.append(point[2])
             stripped_instruction.append(point[3])
             stripped_name.append(point[4])
-            # this doesn't work
-            stripped_altitude.append(sorted_zip[i + 1][5])
-
-    for i in range(0, len(name) - 1):
-        if name[i] == name[i + 1]:
-            instruction[i + 1] = 15
+            # If this point has no altitude data
+            if point[5] == -99:
+                if i == 0: # If we're at point 0 then we can't go back so only go forward
+                    altitudeNotFound = True
+                    j = 1
+                    while altitudeNotFound:
+                        if sorted_zip[i+j][5] != -99:
+                            stripped_altitude.append(sorted_zip[i+j][5])
+                            altitudeNotFound = False
+                        else:
+                            j += j
+                elif i == len(sorted_zip) - 1:
+                    altitudeNotFound = True
+                    j = 1
+                    while altitudeNotFound:
+                        if sorted_zip[i - j][5] != -99:
+                            stripped_altitude.append(sorted_zip[i - j][5])
+                            altitudeNotFound = False
+                        else:
+                            j += j
+                else:
+                    altitudeNotFound = True
+                    j = 1
+                    while altitudeNotFound:
+                        if sorted_zip[i + j][5] != -99:
+                            stripped_altitude.append(sorted_zip[i + j][5])
+                            altitudeNotFound = False
+                        elif sorted_zip[i - j][5] != -99:
+                            stripped_altitude.append(sorted_zip[i + j][5])
+                            altitudeNotFound = False
+                        else:
+                            j += j
+            else:
+                stripped_altitude.append(point[5])
+        else:
+            pass
 
     decoded_gpx = {
         "latitude": stripped_latitude,
@@ -171,7 +203,7 @@ def decode_gpx_gmaps(gpx_path):
             latitude.append(lat)  # Store latitude
             lon = line.split('"')[3]
             longitude.append(lon)  # Store longitude
-            ins = ""
+            ins = "none"
             instruction.append(ins)  # Store no Instruction
             alt = 0
             altitude.append(alt)

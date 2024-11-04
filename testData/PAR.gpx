@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<wpt lat="50.0000" lon="0.0000">
+<time>2024-10-13T00:00:00Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Start on Test Road</desc>
+<sym>Flag, Blue</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00001" lon="0.00001">
+<time>2024-10-13T00:00:01Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn left on to Unittest Lane</desc>
+<sym>Left</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00002" lon="0.00002">
+<time>2024-10-13T00:00:02Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn right onto Debug Avenue</desc>
+<sym>Right</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00003" lon="0.00003">
+<time>2024-10-13T00:00:03Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn sharp left onto A Street</desc>
+<sym>Left_sharp</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00004" lon="0.00004">
+<time>2024-10-13T00:00:04Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn sharp right onto Oakwood Drive</desc>
+<sym>Right_sharp</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00005" lon="0.00005">
+<time>2024-10-13T00:00:05Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn slight left onto Croxted Road</desc>
+<sym>Left_slight</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00007" lon="0.00007">
+<time>2024-10-13T00:00:07Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn slight right onto Elm Drive</desc>
+<sym>Right_slight</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00009" lon="0.00009">
+<time>2024-10-13T00:00:09Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Continue straight on Woodland Avenue</desc>
+<sym>Straight</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00011" lon="0.00011">
+<time>2024-10-13T00:00:11Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Snack stop flag</desc>
+<sym>Flag, Blue</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00013" lon="0.00013">
+<time>2024-10-13T00:00:13Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn left onto Loughborough Road</desc>
+<sym>Left</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00015" lon="0.00015">
+<time>2024-10-13T00:00:15Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn right onto Crystal Palace Parade</desc>
+<sym>Right</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00017" lon="0.00017">
+<time>2024-10-13T00:00:17Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn left onto Anerley Hill</desc>
+<sym>Left</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00019" lon="0.00019">
+<time>2024-10-13T00:00:19Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>Turn right onto Electric Avenue</desc>
+<sym>Right</sym>
+<type>Waypoint</type>
+</wpt>
+<wpt lat="50.00021" lon="0.00021">
+<time>2024-10-13T00:00:21Z</time>
+<name>Unused val</name>
+<cmt>Unused Val</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+<type>Waypoint</type>
+</wpt>
+<trk>
+<name>Test</name>
+<trkseg>
+<trkpt lat="50.0000" lon="0.0000">
+<ele>0</ele>
+<time>2024-10-13T00:00:00Z</time></trkpt>
+<trkpt lat="50.00001" lon="0.00001">
+<ele>1</ele>
+<time>2024-10-13T00:00:01Z</time></trkpt>
+<trkpt lat="50.00002" lon="0.00002">
+<ele>2</ele>
+<time>2024-10-13T00:00:02Z</time></trkpt>
+<trkpt lat="50.00003" lon="0.00003">
+<ele>3</ele>
+<time>2024-10-13T00:00:03Z</time></trkpt>
+<trkpt lat="50.00003" lon="0.00003">
+<ele>4</ele>
+<time>2024-10-13T00:00:04Z</time></trkpt>
+<trkpt lat="50.00004" lon="0.00004">
+<ele>5</ele>
+<time>2024-10-13T00:00:05Z</time></trkpt>
+<trkpt lat="50.00005" lon="0.00005">
+<ele>6</ele>
+<time>2024-10-13T00:00:06Z</time></trkpt>
+<trkpt lat="50.00006" lon="0.00006">
+<ele>7</ele>
+<time>2024-10-13T00:00:07Z</time></trkpt>
+<trkpt lat="50.00007" lon="0.00007">
+<ele>8</ele>
+<time>2024-10-13T00:00:08Z</time></trkpt>
+<trkpt lat="50.00008" lon="0.00008">
+<ele>9</ele>
+<time>2024-10-13T00:00:09Z</time></trkpt>
+<trkpt lat="50.00009" lon="0.00009">
+<ele>10</ele>
+<time>2024-10-13T00:00:10Z</time></trkpt>
+<trkpt lat="50.00010" lon="0.00010">
+<ele>11</ele>
+<time>2024-10-13T00:00:11Z</time></trkpt>
+<trkpt lat="50.00011" lon="0.00011">
+<ele>10</ele>
+<time>2024-10-13T00:00:12Z</time></trkpt>
+<trkpt lat="50.00012" lon="0.00012">
+<ele>9</ele>
+<time>2024-10-13T00:00:13Z</time></trkpt>
+<trkpt lat="50.00013" lon="0.00013">
+<ele>8</ele>
+<time>2024-10-13T00:00:14Z</time></trkpt>
+<trkpt lat="50.00014" lon="0.00014">
+<ele>7</ele>
+<time>2024-10-13T00:00:15Z</time></trkpt>
+<trkpt lat="50.00015" lon="0.00015">
+<ele>6</ele>
+<time>2024-10-13T00:00:16Z</time></trkpt>
+<trkpt lat="50.00016" lon="0.00016">
+<ele>5</ele>
+<time>2024-10-13T00:00:17Z</time></trkpt>
+<trkpt lat="50.00017" lon="0.00017">
+<ele>4</ele>
+<time>2024-10-13T00:00:18Z</time></trkpt>
+<trkpt lat="50.00018" lon="0.00018">
+<ele>3</ele>
+<time>2024-10-13T00:00:19Z</time></trkpt>
+<trkpt lat="50.00019" lon="0.00019">
+<ele>2</ele>
+<time>2024-10-13T00:00:20Z</time></trkpt>
+<trkpt lat="50.00020" lon="0.00020">
+<ele>1</ele>
+<time>2024-10-13T00:00:21Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>
